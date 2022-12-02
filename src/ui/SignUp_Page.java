@@ -8,7 +8,7 @@ package ui;
 
 /**
  *
- * @author Pranav
+ * @author 91983
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,6 +24,7 @@ public class SignUp_Page extends javax.swing.JFrame {
     public SignUp_Page() {
         initComponents();
     }
+    // insert query operation 
     public void insertSignUpdetails(){
         String Username = txtUsername.getText();
         String Password = txtPassword.getText();
@@ -40,6 +41,9 @@ public class SignUp_Page extends javax.swing.JFrame {
             int rowcnt = pst.executeUpdate();
             if(rowcnt > 0){
                 JOptionPane.showMessageDialog(this, "Inserted Succesfully");
+                Login_Page lp = new Login_Page();
+                lp.setVisible(true);
+                this.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(this, "Insertion Failed ");
@@ -48,7 +52,7 @@ public class SignUp_Page extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    // validate
+    // validatation of the feilds
     public boolean validateSignUp(){
         String Username = txtUsername.getText();
         String Password = txtPassword.getText();
@@ -65,7 +69,7 @@ public class SignUp_Page extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(this, "Invalid Password");
          return false ;
         }
-        if(email.equals("") || email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
+        if(email.equals(""))
         {
          JOptionPane.showMessageDialog(this, "Invalid Email");
          return false ;
@@ -249,6 +253,7 @@ public class SignUp_Page extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Secured_Letter_50px.png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
 
+        BtnSignUp.setBackground(new java.awt.Color(255, 51, 51));
         BtnSignUp.setText("Login");
         BtnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,6 +294,9 @@ public class SignUp_Page extends javax.swing.JFrame {
 
     private void BtnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSignUpActionPerformed
         // TODO add your handling code here:
+        Login_Page lp = new Login_Page();
+        lp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnSignUpActionPerformed
 
     private void BtnSignUp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSignUp1ActionPerformed
