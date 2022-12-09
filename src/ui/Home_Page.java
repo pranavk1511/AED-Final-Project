@@ -385,7 +385,7 @@ public class Home_Page extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(changepass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(42, 42, 42)
                         .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,6 +581,8 @@ public class Home_Page extends javax.swing.JFrame {
 
     private void companyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_companyActionPerformed
         // TODO add your handling code here:
+                company();
+
     }//GEN-LAST:event_companyActionPerformed
 
     private void userBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userBActionPerformed
@@ -601,14 +603,23 @@ public class Home_Page extends javax.swing.JFrame {
 
     private void newcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newcomActionPerformed
         // TODO add your handling code here:
+        comp.setVisible(true);
+        comp.addNewCompany();
+       
+//       comp.update.setEnabled(false);
+//       comp.delete.setEnabled(false);
     }//GEN-LAST:event_newcomActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
+         this.dispose();
+        new Login().setVisible(true);
     }//GEN-LAST:event_logoutActionPerformed
 
     private void logindetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logindetailsActionPerformed
         // TODO add your handling code here:
+                new Login_Details().setVisible(true);
+
     }//GEN-LAST:event_logindetailsActionPerformed
 
     private void buydrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buydrugActionPerformed
@@ -617,14 +628,20 @@ public class Home_Page extends javax.swing.JFrame {
 
     private void changepassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepassActionPerformed
         // TODO add your handling code here:
+                new Change_Password().setVisible(true);
+
     }//GEN-LAST:event_changepassActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
+        comp.setVisible(true);
+        comp.updateCompany();
     }//GEN-LAST:event_updateActionPerformed
 
     private void endwithActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endwithActionPerformed
         // TODO add your handling code here:
+        comp.setVisible(true);
+        comp.deleteCompany();
     }//GEN-LAST:event_endwithActionPerformed
 
     private void alldealsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alldealsActionPerformed

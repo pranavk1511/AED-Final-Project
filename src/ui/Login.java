@@ -206,8 +206,8 @@ static String NAME;
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
         if(user_id.getText().equals("")|| password.getText().equals("")){
-            System.out.print(user_id.getText());
-             System.out.print(password.getText());
+            System.out.print("Rishabh is : "+user_id.getText());
+             System.out.print("\nRishabh is : "+password.getText());
             JOptionPane.showMessageDialog(null,"Complete Your Login Information","Missing Information",2);
         }else {
             String sql = "select ID,NAME,PASSWORD from users where ID='"+user_id.getText()+"' ";
