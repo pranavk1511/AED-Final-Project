@@ -4,17 +4,57 @@
  */
 package ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import static ui.DBconnection.con;
+
 /**
  *
  * @author 91983
  */
 public class Home_Page extends javax.swing.JFrame {
+    Connection con = null;
+    PreparedStatement pre= null;
+    ResultSet res = null;
+    static int ex;
+    User user ;
+    Company comp;
+    static Drug drug ;
+    static Move_Drug move_drug;
+    Buy_Drug buy;
+    Date d;
+    SimpleDateFormat dd;
+    static String to;
+    static String from ;
+    static String text ;
+    static String almost_expired_bar ;
+    static String expired_bar ;
+    
 
     /**
      * Creates new form Home_Page
      */
     public Home_Page() {
         initComponents();
+        con=DBconnection.getConnection();
+   //     showDate();
+        buttonvis();
+        user = new User();
+        drug = new Drug();
+        comp = new Company();
+        move_drug = new Move_Drug();
+        buy = new Buy_Drug();
+  //      loginas();
+        warning();
+        login_as();
+        alert_message();
     }
 
     /**
@@ -26,773 +66,648 @@ public class Home_Page extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jLabel34 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        label1 = new java.awt.Label();
+        setting = new java.awt.Button();
+        purchase = new java.awt.Button();
+        drugdetails = new java.awt.Button();
+        company = new java.awt.Button();
+        userB = new java.awt.Button();
+        sales = new java.awt.Button();
+        drugs = new java.awt.Button();
+        newcom = new java.awt.Button();
+        logout = new java.awt.Button();
+        logindetails = new java.awt.Button();
+        buydrug = new java.awt.Button();
+        changepass = new java.awt.Button();
+        update = new java.awt.Button();
+        endwith = new java.awt.Button();
+        alldeals = new java.awt.Button();
+        updatedeals = new java.awt.Button();
+        checkplace = new java.awt.Button();
+        adduser = new java.awt.Button();
+        updateuser = new java.awt.Button();
+        deleteuser = new java.awt.Button();
+        renew_validate = new java.awt.Button();
+        expired1 = new java.awt.Button();
+        editprice = new java.awt.Button();
+        almost = new java.awt.Button();
+        searchdrug = new java.awt.Button();
+        updatedrug = new java.awt.Button();
+        deletedrug = new java.awt.Button();
+        movedrug1 = new java.awt.Button();
+        adddrug = new java.awt.Button();
+        movedrug = new java.awt.Button();
+        salesbill = new java.awt.Button();
+        retdrug = new java.awt.Button();
+        shiftsales = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        label1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        label1.setText("Drug Management");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_menu_48px_1.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/male_user_50px.png"))); // NOI18N
-        jLabel2.setText("Welcome Admin");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1710, 10, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Vaccine Administartion System ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adminIcons/icons8_Exit_26px_1.png"))); // NOI18N
-        jLabel4.setText("Logout");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+        setting.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        setting.setLabel("Settings");
+        setting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Add Vaccine ");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+        purchase.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        purchase.setLabel("Purchase");
+        purchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseActionPerformed(evt);
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Send Report");
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+        drugdetails.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        drugdetails.setLabel("Drug Details");
+
+        company.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        company.setLabel("Company");
+        company.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                companyActionPerformed(evt);
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Remove Patient");
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel12MouseClicked(evt);
+        userB.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        userB.setLabel("User");
+        userB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userBActionPerformed(evt);
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Add Doctor");
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+        sales.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        sales.setLabel("Sales");
+        sales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salesActionPerformed(evt);
             }
         });
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Remove Doctor");
-        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel14MouseClicked(evt);
+        drugs.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        drugs.setLabel("Drugs");
+        drugs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drugsActionPerformed(evt);
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Inventory");
-        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
+        newcom.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        newcom.setLabel("New Comapny");
+        newcom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newcomActionPerformed(evt);
             }
         });
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Remove Hospital");
-        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel16MouseClicked(evt);
+        logout.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        logout.setLabel("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Add Hospital");
-        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel17MouseClicked(evt);
+        logindetails.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        logindetails.setLabel("Login Details");
+        logindetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logindetailsActionPerformed(evt);
             }
         });
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Hospital ");
-        jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel18MouseClicked(evt);
+        buydrug.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        buydrug.setLabel("Buy Drugs");
+        buydrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buydrugActionPerformed(evt);
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("Doctor");
-        jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel19MouseClicked(evt);
+        changepass.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        changepass.setLabel("Change Password");
+        changepass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changepassActionPerformed(evt);
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Patient");
-        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel20MouseClicked(evt);
+        update.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        update.setLabel("Updates");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
             }
         });
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("Vaccine ");
-        jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel21MouseClicked(evt);
+        endwith.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        endwith.setLabel("End Width");
+        endwith.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endwithActionPerformed(evt);
             }
         });
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("Add Patient");
-        jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel22MouseClicked(evt);
+        alldeals.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        alldeals.setLabel("All Deals");
+        alldeals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alldealsActionPerformed(evt);
             }
         });
 
-        jLabel23.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("Add Inventory");
-        jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel23MouseClicked(evt);
+        updatedeals.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        updatedeals.setLabel("Update Deals");
+        updatedeals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatedealsActionPerformed(evt);
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("Government");
-        jLabel24.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel24MouseClicked(evt);
+        checkplace.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        checkplace.setLabel("Check Places");
+        checkplace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkplaceActionPerformed(evt);
             }
         });
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Generate Report");
-        jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel25MouseClicked(evt);
+        adduser.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        adduser.setLabel("Add User");
+        adduser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adduserActionPerformed(evt);
             }
         });
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setText("Remove Drivers");
-        jLabel26.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel26MouseClicked(evt);
+        updateuser.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        updateuser.setLabel("Update user");
+        updateuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateuserActionPerformed(evt);
             }
         });
 
-        jLabel27.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setText("Transport");
-        jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel27MouseClicked(evt);
+        deleteuser.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        deleteuser.setLabel("Delete User");
+        deleteuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteuserActionPerformed(evt);
             }
         });
 
-        jLabel28.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("Add Drivers");
-        jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel28MouseClicked(evt);
+        renew_validate.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        renew_validate.setLabel("Renew Validity");
+        renew_validate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                renew_validateActionPerformed(evt);
             }
         });
 
-        jLabel29.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("Remove Vaccine");
-        jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel29MouseClicked(evt);
+        expired1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        expired1.setLabel("Expired Drugs");
+        expired1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                expired1ActionPerformed(evt);
             }
         });
 
-        jLabel30.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setText("View Drivers");
-        jLabel30.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel30MouseClicked(evt);
+        editprice.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        editprice.setLabel("Edit Prices");
+        editprice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editpriceActionPerformed(evt);
             }
         });
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("View Patient");
-        jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel31MouseClicked(evt);
+        almost.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        almost.setLabel("Less Stock");
+        almost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                almostActionPerformed(evt);
             }
         });
 
-        jLabel32.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setText("View Vaccine");
-        jLabel32.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel32MouseClicked(evt);
+        searchdrug.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        searchdrug.setLabel("Search Drug");
+        searchdrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchdrugActionPerformed(evt);
             }
         });
 
-        jLabel33.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setText("View Doctors");
-        jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel33MouseClicked(evt);
+        updatedrug.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        updatedrug.setLabel("Update Drug");
+        updatedrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatedrugActionPerformed(evt);
             }
         });
 
-        jLabel35.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel35.setText("View Hospital");
-        jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel35MouseClicked(evt);
+        deletedrug.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        deletedrug.setLabel("Delete Drug");
+        deletedrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletedrugActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        movedrug1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        movedrug1.setLabel("Move Drug");
+        movedrug1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movedrug1ActionPerformed(evt);
+            }
+        });
+
+        adddrug.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        adddrug.setLabel("Add Drug");
+        adddrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adddrugActionPerformed(evt);
+            }
+        });
+
+        movedrug.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        movedrug.setLabel("Drug List");
+        movedrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                movedrugActionPerformed(evt);
+            }
+        });
+
+        salesbill.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        salesbill.setLabel("Sales Bill");
+        salesbill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salesbillActionPerformed(evt);
+            }
+        });
+
+        retdrug.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        retdrug.setLabel("Retrieval Drug");
+        retdrug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retdrugActionPerformed(evt);
+            }
+        });
+
+        shiftsales.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        shiftsales.setLabel("Shift Sales");
+        shiftsales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shiftsalesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(358, 358, 358)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(logindetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(setting, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(6, 6, 6))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(70, Short.MAX_VALUE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(16, 16, 16)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(59, Short.MAX_VALUE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(27, 27, 27)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(43, 43, 43)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(43, Short.MAX_VALUE)))
+                        .addComponent(changepass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(endwith, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(newcom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(retdrug, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(shiftsales, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(salesbill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(alldeals, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buydrug, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(editprice, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(almost, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(expired1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(updatedrug, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(movedrug1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(movedrug, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(renew_validate, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addGap(47, 47, 47)
+                                        .addComponent(searchdrug, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(41, 41, 41))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(deletedrug, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(checkplace, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(adddrug, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(company, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(sales, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(purchase, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(updatedeals, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(drugdetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(drugs, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(updateuser, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(adduser, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteuser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel20))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel29)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel31)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel16)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel24)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel25)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel11)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel27)
-                .addGap(4, 4, 4)
-                .addComponent(jLabel28)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel26)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel23)
-                .addGap(158, 158, 158)
-                .addComponent(jLabel4))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(688, Short.MAX_VALUE)
-                    .addComponent(jLabel30)
-                    .addGap(238, 238, 238)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(350, 350, 350)
-                    .addComponent(jLabel33)
-                    .addContainerGap(614, Short.MAX_VALUE)))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(487, 487, 487)
-                    .addComponent(jLabel35)
-                    .addContainerGap(488, Short.MAX_VALUE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(setting, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(company, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(purchase, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugdetails, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(drugs, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sales, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(buydrug, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(68, 68, 68))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(34, 34, 34)
+                                                .addComponent(updatedeals, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(alldeals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(logindetails, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(88, 88, 88))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(salesbill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)
+                                                .addComponent(shiftsales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(retdrug, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(newcom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(changepass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(endwith, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(432, 432, 432))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(adddrug, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deletedrug, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(updatedrug, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchdrug, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(movedrug1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(movedrug, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(checkplace, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editprice, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(expired1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(renew_validate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(almost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(452, 452, 452))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(userB, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(adduser, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteuser, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateuser, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
-
-        jPanel6.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setText("No.of Patient");
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
-
-        jPanel7.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setText("No.of Hospitals");
-        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
-
-        jPanel5.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setText("No.of Doctors ");
-        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
-
-        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 0, 0, 0, new java.awt.Color(0, 0, 0)));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setText("Vaccine Administered");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
-
-        jTable1.setBackground(new java.awt.Color(0, 204, 255));
-        jTable1.setForeground(new java.awt.Color(0, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jTable2.setBackground(new java.awt.Color(0, 204, 255));
-        jTable2.setForeground(new java.awt.Color(0, 204, 204));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        jLabel34.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel34.setText("View Doctors");
-        jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel34MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1900, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(50, 50, 50)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(835, 835, 835)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(835, Short.MAX_VALUE)))
+                .addGap(23, 23, 23)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1004, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(150, 150, 150)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(522, 522, 522)
-                    .addComponent(jLabel34)
-                    .addContainerGap(523, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(243, Short.MAX_VALUE))
         );
-
-        jPanel1.getAccessibleContext().setAccessibleDescription("");
 
         setSize(new java.awt.Dimension(1914, 1032));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void companyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_companyActionPerformed
         // TODO add your handling code here:
-        Login_Page hp = new Login_Page();
-        hp.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_companyActionPerformed
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void userBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userBActionPerformed
         // TODO add your handling code here:
-        Send_Report sr = new Send_Report();
-        sr.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel11MouseClicked
+    }//GEN-LAST:event_userBActionPerformed
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+    private void salesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesActionPerformed
         // TODO add your handling code here:
-        Add_Doctor ad = new Add_Doctor();
-        ad.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel13MouseClicked
+    }//GEN-LAST:event_salesActionPerformed
 
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+    private void drugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugsActionPerformed
         // TODO add your handling code here:
-        Add_Hospital ad = new Add_Hospital();
-        ad.setVisible(true);
-    }//GEN-LAST:event_jLabel15MouseClicked
+    }//GEN-LAST:event_drugsActionPerformed
 
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+    private void purchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel17MouseClicked
+    }//GEN-LAST:event_purchaseActionPerformed
 
-    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
+    private void newcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newcomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel18MouseClicked
+    }//GEN-LAST:event_newcomActionPerformed
 
-    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel19MouseClicked
+    }//GEN-LAST:event_logoutActionPerformed
 
-    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+    private void logindetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logindetailsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel20MouseClicked
+    }//GEN-LAST:event_logindetailsActionPerformed
 
-    private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
+    private void buydrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buydrugActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel21MouseClicked
+    }//GEN-LAST:event_buydrugActionPerformed
 
-    private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
+    private void changepassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepassActionPerformed
         // TODO add your handling code here:
-        Add_Patient ap = new Add_Patient();
-        ap.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel22MouseClicked
+    }//GEN-LAST:event_changepassActionPerformed
 
-    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-        Add_Inventory ai = new Add_Inventory();
-        ai.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel23MouseClicked
+    }//GEN-LAST:event_updateActionPerformed
 
-    private void jLabel24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel24MouseClicked
+    private void endwithActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endwithActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel24MouseClicked
+    }//GEN-LAST:event_endwithActionPerformed
 
-    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
+    private void alldealsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alldealsActionPerformed
         // TODO add your handling code here:
-        Generate_Report gr = new Generate_Report();
-        gr.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel25MouseClicked
+    }//GEN-LAST:event_alldealsActionPerformed
 
-    private void jLabel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseClicked
+    private void updatedealsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatedealsActionPerformed
         // TODO add your handling code here:
-        Remove_Driver rd = new Remove_Driver();
-        rd.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel26MouseClicked
+    }//GEN-LAST:event_updatedealsActionPerformed
 
-    private void jLabel27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel27MouseClicked
+    private void checkplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkplaceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel27MouseClicked
+    }//GEN-LAST:event_checkplaceActionPerformed
 
-    private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
+    private void adduserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adduserActionPerformed
         // TODO add your handling code here:
-        Add_Driver ad = new Add_Driver();
-        ad.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel28MouseClicked
+    }//GEN-LAST:event_adduserActionPerformed
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void updateuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateuserActionPerformed
         // TODO add your handling code here:
-        Add_Vaccine av = new Add_Vaccine();
-        av.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_updateuserActionPerformed
 
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+    private void deleteuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteuserActionPerformed
         // TODO add your handling code here:
-        Remove_Patient rp = new Remove_Patient();
-        rp.setVisible(true);
-           
-    }//GEN-LAST:event_jLabel12MouseClicked
+    }//GEN-LAST:event_deleteuserActionPerformed
 
-    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+    private void renew_validateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renew_validateActionPerformed
         // TODO add your handling code here:
-        Remove_Doctor rd = new Remove_Doctor();
-        rd.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel14MouseClicked
+    }//GEN-LAST:event_renew_validateActionPerformed
 
-    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
+    private void expired1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expired1ActionPerformed
         // TODO add your handling code here:
-        Remove_Hospital rh = new Remove_Hospital();
-        rh.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel16MouseClicked
+    }//GEN-LAST:event_expired1ActionPerformed
 
-    private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
+    private void editpriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editpriceActionPerformed
         // TODO add your handling code here:
-        Remove_Vaccine rv = new Remove_Vaccine();
-        rv.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel29MouseClicked
+    }//GEN-LAST:event_editpriceActionPerformed
 
-    private void jLabel30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel30MouseClicked
+    private void almostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_almostActionPerformed
         // TODO add your handling code here:
-        View_Driver vd = new View_Driver();
-        vd.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel30MouseClicked
+    }//GEN-LAST:event_almostActionPerformed
 
-    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
+    private void searchdrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchdrugActionPerformed
         // TODO add your handling code here:
-        View_Patient vp = new View_Patient();
-        vp.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel31MouseClicked
+    }//GEN-LAST:event_searchdrugActionPerformed
 
-    private void jLabel32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseClicked
+    private void updatedrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatedrugActionPerformed
         // TODO add your handling code here:
-        View_Vaccine vv = new View_Vaccine();
-        vv.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel32MouseClicked
+    }//GEN-LAST:event_updatedrugActionPerformed
 
-    private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
+    private void deletedrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletedrugActionPerformed
         // TODO add your handling code here:
-        View_Doctor vd = new View_Doctor();
-        vd.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel33MouseClicked
+    }//GEN-LAST:event_deletedrugActionPerformed
 
-    private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
+    private void movedrug1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movedrug1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel34MouseClicked
+    }//GEN-LAST:event_movedrug1ActionPerformed
 
-    private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
+    private void adddrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adddrugActionPerformed
         // TODO add your handling code here:
-        View_Hospital vh = new View_Hospital();
-        vh.setVisible(true);
-        
-    }//GEN-LAST:event_jLabel35MouseClicked
+    }//GEN-LAST:event_adddrugActionPerformed
+
+    private void movedrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movedrugActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_movedrugActionPerformed
+
+    private void salesbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesbillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salesbillActionPerformed
+
+    private void retdrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retdrugActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_retdrugActionPerformed
+
+    private void shiftsalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shiftsalesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_shiftsalesActionPerformed
+
+    private void settingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingActionPerformed
+        // TODO add your handling code here:
+                setting();
+
+    }//GEN-LAST:event_settingActionPerformed
 
     /**
      * @param args the command line arguments
@@ -830,49 +745,498 @@ public class Home_Page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private java.awt.Button adddrug;
+    private java.awt.Button adduser;
+    private java.awt.Button alldeals;
+    private java.awt.Button almost;
+    private java.awt.Button buydrug;
+    private java.awt.Button changepass;
+    private java.awt.Button checkplace;
+    private java.awt.Button company;
+    private java.awt.Button deletedrug;
+    private java.awt.Button deleteuser;
+    private java.awt.Button drugdetails;
+    private java.awt.Button drugs;
+    private java.awt.Button editprice;
+    private java.awt.Button endwith;
+    private java.awt.Button expired1;
+    private javax.swing.JPanel jPanel3;
+    private java.awt.Label label1;
+    private java.awt.Button logindetails;
+    private java.awt.Button logout;
+    private java.awt.Button movedrug;
+    private java.awt.Button movedrug1;
+    private java.awt.Button newcom;
+    private java.awt.Button purchase;
+    private java.awt.Button renew_validate;
+    private java.awt.Button retdrug;
+    private java.awt.Button sales;
+    private java.awt.Button salesbill;
+    private java.awt.Button searchdrug;
+    private java.awt.Button setting;
+    private java.awt.Button shiftsales;
+    private java.awt.Button update;
+    private java.awt.Button updatedeals;
+    private java.awt.Button updatedrug;
+    private java.awt.Button updateuser;
+    private java.awt.Button userB;
     // End of variables declaration//GEN-END:variables
+//private void showDate(){
+  //      d = new Date();
+    //    dd = new SimpleDateFormat("dd-MM-yyyy");
+      //  today.setText(dd.format(d));
+        
+//        new Timer(0,new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent ae) {
+  //              Date d = new Date();
+  //              SimpleDateFormat dd = new SimpleDateFormat("hh:mm:ss a");
+    //            time.setText(dd.format(d));
+      //      }
+   //     }).start();
+   // }
+    private void buttonvis(){
+        adduser.setVisible(false);
+        deleteuser.setVisible(false);
+        updateuser.setVisible(false);
+        
+        adddrug.setVisible(false);
+        deletedrug.setVisible(false);
+        updatedrug.setVisible(false);
+        searchdrug.setVisible(false);
+        movedrug.setVisible(false);
+        movedrug1.setVisible(false);
+        
+        checkplace.setVisible(false);
+        editprice.setVisible(false);
+        renew_validate.setVisible(false);
+        expired1.setVisible(false);
+        almost.setVisible(false);
+        
+        buydrug.setVisible(false);
+        updatedeals.setVisible(false);
+        alldeals.setVisible(false);
+        
+        salesbill.setVisible(false);
+        shiftsales.setVisible(false);
+        retdrug.setVisible(false);
+        
+        newcom.setVisible(false);
+        endwith.setVisible(false);
+        update.setVisible(false);
+        
+        logindetails.setVisible(false);
+        changepass.setVisible(false);
+        logout.setVisible(false);
+    }
+    private void uservis(){
+        adduser.setVisible(true);
+        deleteuser.setVisible(true);
+        updateuser.setVisible(true);
+        
+    }
+    private void enteruser(){
+        userB.setEnabled(false);
+        drugs.setEnabled(true);
+        drugdetails.setEnabled(true);
+        sales.setEnabled(true);
+        purchase.setEnabled(true);
+        setting.setEnabled(true);
+        company.setEnabled(true);
+        
+        adduser.setVisible(true);
+        deleteuser.setVisible(true);
+        updateuser.setVisible(true);
+        
+        adddrug.setVisible(false);
+        deletedrug.setVisible(false);
+        updatedrug.setVisible(false);
+        searchdrug.setVisible(false);
+        movedrug.setVisible(false);
+        movedrug1.setVisible(false);
+        
+        editprice.setVisible(false);
+        checkplace.setVisible(false);
+        renew_validate.setVisible(false);
+        expired1.setVisible(false);
+        almost.setVisible(false);
+        
+        buydrug.setVisible(false);
+        updatedeals.setVisible(false);
+        alldeals.setVisible(false);
+        
+        salesbill.setVisible(false);
+        shiftsales.setVisible(false);
+        retdrug.setVisible(false);
+        
+        newcom.setVisible(false);
+        endwith.setVisible(false);
+        update.setVisible(false);
+        
+        logindetails.setVisible(false);
+        changepass.setVisible(false);
+        logout.setVisible(false);
+    }
+    private void enterdrugs(){
+        drugs.setEnabled(false);
+        userB.setEnabled(true);
+        drugdetails.setEnabled(true);
+        sales.setEnabled(true);
+        purchase.setEnabled(true);
+        setting.setEnabled(true);
+        company.setEnabled(true);
+        
+        adduser.setVisible(false);
+        deleteuser.setVisible(false);
+        updateuser.setVisible(false);
+        
+        adddrug.setVisible(true);
+        deletedrug.setVisible(true);
+        updatedrug.setVisible(true);
+        searchdrug.setVisible(true);
+        movedrug.setVisible(true);
+        movedrug1.setVisible(true);
+        
+        editprice.setVisible(false);
+        checkplace.setVisible(false);
+        renew_validate.setVisible(false);
+        expired1.setVisible(false);
+        almost.setVisible(false);
+        
+        buydrug.setVisible(false);
+        updatedeals.setVisible(false);
+        alldeals.setVisible(false);
+        
+        salesbill.setVisible(false);
+        shiftsales.setVisible(false);
+        retdrug.setVisible(false);
+        
+        newcom.setVisible(false);
+        endwith.setVisible(false);
+        update.setVisible(false);
+        
+        logindetails.setVisible(false);
+        changepass.setVisible(false);
+        logout.setVisible(false);
+    }
+    private void enterdrugdetails(){
+        drugdetails.setEnabled(false);
+        userB.setEnabled(true);
+        drugs.setEnabled(true);
+        sales.setEnabled(true);
+        purchase.setEnabled(true);
+        setting.setEnabled(true);
+        company.setEnabled(true);
+        
+        adduser.setVisible(false);
+        deleteuser.setVisible(false);
+        updateuser.setVisible(false);
+        
+        adddrug.setVisible(false);
+        deletedrug.setVisible(false);
+        updatedrug.setVisible(false);
+        searchdrug.setVisible(false);
+        movedrug.setVisible(false);
+        movedrug1.setVisible(false);
+        
+        editprice.setVisible(true);
+        checkplace.setVisible(true);
+        renew_validate.setVisible(true);
+        expired1.setVisible(true);
+        almost.setVisible(true);
+        
+        buydrug.setVisible(false);
+        updatedeals.setVisible(false);
+        alldeals.setVisible(false);
+        
+        salesbill.setVisible(false);
+        shiftsales.setVisible(false);
+        retdrug.setVisible(false);
+        
+        newcom.setVisible(false);
+        endwith.setVisible(false);
+        update.setVisible(false);
+        
+        logindetails.setVisible(false);
+        changepass.setVisible(false);
+        logout.setVisible(false);
+    }
+    private void enterpurchase(){
+        purchase.setEnabled(false);
+        userB.setEnabled(true);
+        drugs.setEnabled(true);
+        drugdetails.setEnabled(true);
+        sales.setEnabled(true);
+        setting.setEnabled(true);
+        company.setEnabled(true);
+        
+        adduser.setVisible(false);
+        deleteuser.setVisible(false);
+        updateuser.setVisible(false);
+        
+        adddrug.setVisible(false);
+        deletedrug.setVisible(false);
+        updatedrug.setVisible(false);
+        searchdrug.setVisible(false);
+        movedrug.setVisible(false);
+        movedrug1.setVisible(false);
+        
+        editprice.setVisible(false);
+        checkplace.setVisible(false);
+        renew_validate.setVisible(false);
+        expired1.setVisible(false);
+        almost.setVisible(false);
+        
+        buydrug.setVisible(true);
+        updatedeals.setVisible(true);
+        alldeals.setVisible(true);
+        
+        salesbill.setVisible(false);
+        shiftsales.setVisible(false);
+        retdrug.setVisible(false);
+        
+        newcom.setVisible(false);
+        endwith.setVisible(false);
+        update.setVisible(false);
+        
+        logindetails.setVisible(false);
+        changepass.setVisible(false);
+        logout.setVisible(false);
+    }
+    private void sales(){
+        sales.setEnabled(false);
+        userB.setEnabled(true);
+        drugs.setEnabled(true);
+        drugdetails.setEnabled(true);
+        purchase.setEnabled(true);
+        setting.setEnabled(true);
+        company.setEnabled(true);
+        
+        adduser.setVisible(false);
+        deleteuser.setVisible(false);
+        updateuser.setVisible(false);
+        
+        adddrug.setVisible(false);
+        deletedrug.setVisible(false);
+        updatedrug.setVisible(false);
+        searchdrug.setVisible(false);
+        movedrug.setVisible(false);
+        movedrug1.setVisible(false);
+        
+        editprice.setVisible(false);
+        checkplace.setVisible(false);
+        renew_validate.setVisible(false);
+        expired1.setVisible(false);
+        almost.setVisible(false);
+        
+        buydrug.setVisible(false);
+        updatedeals.setVisible(false);
+        alldeals.setVisible(false);
+        
+        salesbill.setVisible(true);
+        shiftsales.setVisible(true);
+        retdrug.setVisible(true);
+        
+        newcom.setVisible(false);
+        endwith.setVisible(false);
+        update.setVisible(false);
+        
+        logindetails.setVisible(false);
+        changepass.setVisible(false);
+        logout.setVisible(false);
+    }
+    private void setting(){
+        setting.setEnabled(false);
+        userB.setEnabled(true);
+        drugs.setEnabled(true);
+        drugdetails.setEnabled(true);
+        sales.setEnabled(true);
+        purchase.setEnabled(true);
+        company.setEnabled(true);
+        
+        adduser.setVisible(false);
+        deleteuser.setVisible(false);
+        updateuser.setVisible(false);
+        
+        adddrug.setVisible(false);
+        deletedrug.setVisible(false);
+        updatedrug.setVisible(false);
+        searchdrug.setVisible(false);
+        movedrug.setVisible(false);
+        movedrug1.setVisible(false);
+        
+        editprice.setVisible(false);
+        checkplace.setVisible(false);
+        renew_validate.setVisible(false);
+        expired1.setVisible(false);
+        almost.setVisible(false);
+        
+        buydrug.setVisible(false);
+        updatedeals.setVisible(false);
+        alldeals.setVisible(false);
+        
+        salesbill.setVisible(false);
+        shiftsales.setVisible(false);
+        retdrug.setVisible(false);
+        
+        newcom.setVisible(false);
+        endwith.setVisible(false);
+        update.setVisible(false);
+        
+        logindetails.setVisible(true);
+        changepass.setVisible(true);
+        logout.setVisible(true);
+    }
+    private void company(){
+        company.setEnabled(false);
+        userB.setEnabled(true);
+        drugs.setEnabled(true);
+        drugdetails.setEnabled(true);
+        sales.setEnabled(true);
+        purchase.setEnabled(true);
+        setting.setEnabled(true);
+        
+        adduser.setVisible(false);
+        deleteuser.setVisible(false);
+        updateuser.setVisible(false);
+        
+        adddrug.setVisible(false);
+        deletedrug.setVisible(false);
+        updatedrug.setVisible(false);
+        searchdrug.setVisible(false);
+        movedrug.setVisible(false);
+        movedrug1.setVisible(false);
+        
+        editprice.setVisible(false);
+        checkplace.setVisible(false);
+        renew_validate.setVisible(false);
+        expired1.setVisible(false);
+        almost.setVisible(false);
+        
+        buydrug.setVisible(false);
+        updatedeals.setVisible(false);
+        alldeals.setVisible(false);
+        
+        salesbill.setVisible(false);
+        shiftsales.setVisible(false);
+        retdrug.setVisible(false);
+        
+        newcom.setVisible(true);
+        endwith.setVisible(true);
+        update.setVisible(true);
+        
+        logindetails.setVisible(false);
+        changepass.setVisible(false);
+        logout.setVisible(false);
+    }
+    //private void loginas(){
+    //    String sql = "select ID,NAME from users where ID='"+Login.id.getText()+"' ";
+      //  try{
+     //       pre=con.prepareStatement(sql);
+       //     res=pre.executeQuery();
+         //   if(res.next()){
+   //             username1.setText(res.getString("NAME"));
+   //        //     if(res.getString("ID").equals("1")){
+    //                username.setText("Admin");
+    //            }else{
+     //               username.setText("Employee");
+    //            }
+    //        }
+     //   }catch(Exception e){
+     //       JOptionPane.showMessageDialog(null,e.getMessage(),"Error",2);
+     //   }
+  //  }
+    private void warning(){
+        //check the Expiration of the drugs;
+        
+        int ex_year ;
+        int current_year ;
+        int ex_month ;
+        int ex_day ;
+        int current_month ;
+        int current_day ;
+        String sql = "select BARCODE,EXPIRATION_DATE from drugs";
+        try{
+            pre=con.prepareStatement(sql);
+            res=pre.executeQuery();
+            while(res.next()){
+                Warning warning = new Warning();
+                ex_year = Integer.parseInt(res.getString("EXPIRATION_DATE").split("-")[2]);
+                ex_month = Integer.parseInt(res.getString("EXPIRATION_DATE").split("-")[1]);
+                ex_day = Integer.parseInt(res.getString("EXPIRATION_DATE").split("-")[0]);
+                current_year = Integer.parseInt(dd.format(d).split("-")[2]);
+                current_month = Integer.parseInt(dd.format(d).split("-")[1]);
+                current_day = Integer.parseInt(dd.format(d).split("-")[0]);
+                if(ex_year==current_year){
+                    if(ex_month-current_month==2){
+                        ex=1;
+                        almost_expired_bar = res.getString("BARCODE");
+                        warning.setVisible(true);
+                    }else if(ex_month==current_month){
+                        if(ex_day==current_day){
+                            ex=0;
+                            expired_bar = res.getString("BARCODE");
+                            update_to_expired();
+                            warning.setVisible(true);
+                        }
+                    }
+                }
+                
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error",2);
+            }
+    }
+    private void update_to_expired(){
+        String sql = "update drugs set EXPIRY='Expired' where BARCODE='"+expired_bar+"' ";
+        try{
+            pre=con.prepareStatement(sql);
+            pre.execute();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error",2);
+        }
+    }
+    private void login_as(){
+        Date d = new Date();
+        SimpleDateFormat dd = new SimpleDateFormat("hh:mm:ss");
+  //      String sql = "insert into login (NAME,TYPE,DATE,TIME) values ('"+username1.getText()+"' ,'"+username.getText()+"' ,'"+today.getText()+"' ,'"+dd.format(d)+"' )";
+        try {
+ //           pre=con.prepareStatement(sql);
+            pre.execute();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error",2);
+        }
+    }
+    
+    private void alert_message(){
+  //      String sql = "select MESSAGE_TO,MESSAGE_FROM,MESSAGE_TEXT from message_history where MESSAGE_TO='"+username1.getText()+"' ";
+        try{
+   //         pre=con.prepareStatement(sql);
+            res=pre.executeQuery();
+            if(res.next()){
+                to=res.getString("MESSAGE_TO");
+                from=res.getString("MESSAGE_FROM");
+                text=res.getString("MESSAGE_TEXT");
+   //             msgAlertDialog.setVisible(true);
+            }else{
+   //             msgAlertDialog.setVisible(false);
+            }
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error",2);
+        }
+    }
+    
+    private void deleteMsg(){
+        String sql = "delete from message_history";
+        try {
+            pre=con.prepareStatement(sql);
+            pre.execute();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error",2);
+        }
+    }
 }
+
+
+
