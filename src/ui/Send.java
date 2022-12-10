@@ -21,9 +21,9 @@ ResultSet res = null;
 static String message_To;
     public Send() {
         initComponents();
-        con=Connect.connect();
+       con=DBconnection.getConnection();
         fill_username();
-        message_from.setText(Pharmacy.username1.getText());
+        message_from.setText(Home_Page.username1.getText());
         
     }
     /**
@@ -417,7 +417,7 @@ private void fill_username(){
         pre=con.prepareStatement(sql);
         res=pre.executeQuery();
         while(res.next()){
-        if(!(res.getString("NAME").equals(Pharmacy.username1.getText()))){
+        if(!(res.getString("NAME").equals(Home_Page.username1.getText()))){
            message_to.addItem(res.getString("NAME"));   
           }}}
          catch (Exception e) {

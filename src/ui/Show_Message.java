@@ -15,8 +15,8 @@ public class Show_Message extends javax.swing.JFrame {
      */
     public Show_Message() {
         initComponents();
-        message_from.setText(Pharmacy.from);
-        message_text.setText(Pharmacy.text);
+        message_from.setText(Home_Page.from);
+        message_text.setText(Home_Page.text);
     }
 
     /**
