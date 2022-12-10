@@ -79,7 +79,6 @@ public class Login_Page extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        evaluatorDimension2D1 = new org.jdesktop.swing.animation.timing.evaluators.EvaluatorDimension2D();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -93,8 +92,6 @@ public class Login_Page extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        BtnSignUp = new rojerusan.RSMaterialButtonCircle();
-        BtnSignUp1 = new rojerusan.RSMaterialButtonCircle();
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -173,23 +170,6 @@ public class Login_Page extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_Forgot_Password_50px_4.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
 
-        BtnSignUp.setText("Login");
-        BtnSignUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSignUpActionPerformed(evt);
-            }
-        });
-        jPanel1.add(BtnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, 180, 70));
-
-        BtnSignUp1.setBackground(new java.awt.Color(255, 51, 51));
-        BtnSignUp1.setText("Sign-Up");
-        BtnSignUp1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSignUp1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(BtnSignUp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 610, 180, 70));
-
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
@@ -267,11 +247,8 @@ public class Login_Page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rojerusan.RSMaterialButtonCircle BtnSignUp;
-    private rojerusan.RSMaterialButtonCircle BtnSignUp1;
     private javax.swing.JLabel CreateNewAcc;
     private javax.swing.JLabel SignUp;
-    private org.jdesktop.swing.animation.timing.evaluators.EvaluatorDimension2D evaluatorDimension2D1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
