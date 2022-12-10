@@ -23,7 +23,7 @@ ResultSet res = null;
 ArrayList<String> arr ;    
     public Inbox() {
         initComponents();
-        con=Connect.connect();
+        con=DBconnection.getConnection();
         fill_Username();
         arr = new ArrayList();
     }
@@ -163,7 +163,7 @@ ArrayList<String> arr ;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void usernameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_usernameItemStateChanged
-        String sql = " select * from inbox where (MESSAGE_FROM= '"+Pharmacy.username1.getText()+"' and MESSAGE_TO='"+username.getSelectedItem()+"') or (MESSAGE_FROM= '"+username.getSelectedItem()+"' and MESSAGE_TO='"+Pharmacy.username1.getText()+"') ";
+        String sql = " select * from inbox where (MESSAGE_FROM= '"+Home_Page.username1.getText()+"' and MESSAGE_TO='"+username.getSelectedItem()+"') or (MESSAGE_FROM= '"+username.getSelectedItem()+"' and MESSAGE_TO='"+Pharmacy.username1.getText()+"') ";
         try {
             pre=con.prepareStatement(sql);
             res=pre.executeQuery();
@@ -224,7 +224,7 @@ private void fill_Username(){
         pre=con.prepareStatement(sql);
         res=pre.executeQuery();
         while(res.next()){
-          if(!(res.getString("NAME").equals(Pharmacy.username1.getText()))){
+          if(!(res.getString("NAME").equals(Home_Page.username1.getText()))){
            username.addItem(res.getString("NAME"));   
           }  
         }
