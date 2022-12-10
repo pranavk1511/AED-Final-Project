@@ -591,6 +591,7 @@ public class Home_Page extends javax.swing.JFrame {
 
     private void salesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesActionPerformed
         // TODO add your handling code here:
+        sales();
     }//GEN-LAST:event_salesActionPerformed
 
     private void drugsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugsActionPerformed
@@ -599,6 +600,34 @@ public class Home_Page extends javax.swing.JFrame {
 
     private void purchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseActionPerformed
         // TODO add your handling code here:
+        if(!username.getText().equals("Employee")){
+            enterpurchase();
+        }else {
+            String pass = JOptionPane.showInputDialog("You are not allowed to check user Inforamtion\nTo get in please confirm Admin Password");
+            String sql = "select NAME,PASSWORD from users where NAME='Ebrahem Samer' ";
+            
+            if (!pass.equals("")) {
+                
+                try{
+                    pre=con.prepareStatement(sql);
+                    res=pre.executeQuery();
+                    if(res.next()){
+                        if(res.getString("PASSWORD").equals(pass)){
+                            enterpurchase();
+                        }else if(pass.isEmpty()){
+                            JOptionPane.showMessageDialog(null,"You must write admin Password","Failed Access",2);
+                        }else {
+                            JOptionPane.showMessageDialog(null,"Wrong Password","Failed Access",2);
+                        }}
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null,e.getMessage(),"Error",2);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null,"Please type in Admin Password","Failed Access",2);
+                
+            }
+            
+        }
     }//GEN-LAST:event_purchaseActionPerformed
 
     private void newcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newcomActionPerformed
@@ -624,6 +653,9 @@ public class Home_Page extends javax.swing.JFrame {
 
     private void buydrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buydrugActionPerformed
         // TODO add your handling code here:
+        buy.setVisible(true);
+        buy.makedeal.setEnabled(true);
+        buy.update.setEnabled(false);
     }//GEN-LAST:event_buydrugActionPerformed
 
     private void changepassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepassActionPerformed
@@ -710,14 +742,17 @@ public class Home_Page extends javax.swing.JFrame {
 
     private void salesbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesbillActionPerformed
         // TODO add your handling code here:
+        new Sales_Bill().setVisible(true);
     }//GEN-LAST:event_salesbillActionPerformed
 
     private void retdrugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retdrugActionPerformed
         // TODO add your handling code here:
+        new Renew_Validity().setVisible(true);
     }//GEN-LAST:event_retdrugActionPerformed
 
     private void shiftsalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shiftsalesActionPerformed
         // TODO add your handling code here:
+        new Shift_Sales().setVisible(true);
     }//GEN-LAST:event_shiftsalesActionPerformed
 
     private void settingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingActionPerformed
