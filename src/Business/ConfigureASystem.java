@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Business;
 
 import Business.Employee.Employee;
@@ -10,12 +6,13 @@ import Business.UserAccount.UserAccount;
 
 /**
  *
- * @author kshitijkumartiwari
+ * @author Pranav
  */
 public class ConfigureASystem {
-    public static Ecosystem configure(){
+    
+    public static EcoSystem configure(){
         
-        Ecosystem system = Ecosystem.getInstance();
+        EcoSystem system = EcoSystem.getInstance();
         
         //Create a network
         //create an enterprise
@@ -24,11 +21,11 @@ public class ConfigureASystem {
         //create user account
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("RRH", "SomeAddress", "SomePhone");
-                //SupplierEmp supplierEmp = system.getSupplierEmpDirectory().createSupplierEmp("RRH", "SomeAddress", "SomePhone");
-
+        Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin");
+        
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         
         return system;
     }
+    
 }

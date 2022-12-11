@@ -1,87 +1,102 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Business;
 
-import Business.Customer.CustomerDirectory;
-import Business.Pharmacy.PharmacyDirectory;
-import Business.SupplierDeliverMan.SupplyDeliveryManDirectory;
-import Business.Supplier.SupplierDirectory;
-import Business.SupplierEmp.SupplierEmpDirectory;
-import Business.DeliveryMan.DeliveryManDirectory;
-import Business.Role.*;
+import Business.Listings.HouseListingDirectory;
+import Business.Listings.TempHouseListingDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Role.Role;
+import Business.Role.SystemAdminRole;
+import Business.UserAccount.UserAccountDirectory;
+import Business.Citizen.CitizenDirectory;
 import java.util.ArrayList;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
  *
  * @author Pranav
  */
-public class Ecosystem extends Organization {
-    private static Ecosystem business;
-    private PharmacyDirectory pharmacyDirectory;
-    private CustomerDirectory customerDirectory;
-    private DeliveryManDirectory deliveryManDirectory;
-    private SupplierDirectory supplierDirectory;
-    private SupplyDeliveryManDirectory supplierDeliveryManDirectory;
+public class EcoSystem extends Organization{
+    
+    private static EcoSystem business;
+    private ArrayList<Network> networkList;
 
-    public Ecosystem(PharmacyDirectory pharmacyDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory, SupplierDirectory supplierDirectory, SupplyDeliveryManDirectory supplierDeliveryManDirectory) {
-
-        this.pharmacyDirectory = pharmacyDirectory;
-        this.customerDirectory = customerDirectory;
-        this.deliveryManDirectory = deliveryManDirectory;
-                this.supplierDirectory = supplierDirectory;
-                        this.supplierDeliveryManDirectory = supplierDeliveryManDirectory;
-
+    public CitizenDirectory getVd() {
+        return vd;
     }
 
-    
-    
-    public static Ecosystem getInstance(){
+    public void setVd(CitizenDirectory vd) {
+        this.vd = vd;
+    }
+
+    public UserAccountDirectory getUad() {
+        return uad;
+    }
+
+    public void setUad(UserAccountDirectory uad) {
+        this.uad = uad;
+    }
+    private CitizenDirectory vd;
+    private UserAccountDirectory uad;
+    private HouseListingDirectory hsd;
+    private TempHouseListingDirectory thsd;
+
+    public TempHouseListingDirectory getThsd() {
+        return thsd;
+    }
+
+    public void setThsd(TempHouseListingDirectory thsd) {
+        this.thsd = thsd;
+    }
+
+    public HouseListingDirectory getHsd() {
+        return hsd;
+    }
+
+    public void setHsd(HouseListingDirectory hsd) {
+        this.hsd = hsd;
+    }
+    public static EcoSystem getInstance(){
         if(business==null){
-            business=new Ecosystem();
+            business=new EcoSystem();
         }
         return business;
     }
     
+    public Network createAndAddNetwork(){
+        Network network=new Network();
+        networkList.add(network);
+        return network;
+    }
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList=new ArrayList<Role>();
         roleList.add(new SystemAdminRole());
         return roleList;
     }
-    private Ecosystem(){
+    private EcoSystem(){
         super(null);
-       // networkList=new ArrayList<Network>();
-        this.pharmacyDirectory = new PharmacyDirectory();
-        this.customerDirectory = new CustomerDirectory();
-        this.deliveryManDirectory = new DeliveryManDirectory();
-         this.supplierDirectory = new SupplierDirectory();
-
-                        this.supplierDeliveryManDirectory = new SupplyDeliveryManDirectory();
+        networkList=new ArrayList<Network>();
     }
 
-    public PharmacyDirectory getPharmacyDirectory() {
-        return pharmacyDirectory;
+    public ArrayList<Network> getNetworkList() {
+        return networkList;
     }
 
-    public CustomerDirectory getCustomerDirectory() {
-        return customerDirectory;
+    public void setNetworkList(ArrayList<Network> networkList) {
+        this.networkList = networkList;
     }
-
-    public DeliveryManDirectory getDeliveryManDirectory() {
-        return deliveryManDirectory;
-    } 
-    public SupplierDirectory getSupplierDirectory() {
-        return supplierDirectory;
-    }
-
-    public SupplyDeliveryManDirectory getSupplierDeliveryManDirectory() {
-        return supplierDeliveryManDirectory;
-    }
+    
     public boolean checkIfUserIsUnique(String userName){
-       //
-       return false;
+        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+            return false;
+        }
+        for(Network network:networkList){
+            
+        }
+        return true;
     }
 }
