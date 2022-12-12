@@ -117,7 +117,7 @@ public class ViewAllCitizen extends javax.swing.JPanel {
          JFrame test = new JFrame("Google Maps");
 
         try {
-            String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+coordX+","+ coordY +"&markers=color:red%7Clabel:G%7C40.711614,-74.012318&zoom=16&size=600x300&key=AIzaSyACgsl2TkE6C_oKz9SwJdnCZCKLbss2fyI";
+            String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?center="+coordX+","+ coordY +"&markers=color:red%7Clabel:G%7C40.711614,-74.012318&zoom=16&size=600x300&key=AIzaSyCRzJqGxqsxcFJynI8P2lv2ES_61g2kL_8";
             String destinationFile = "image.jpg";
             String str = destinationFile;
             URL url = new URL(imageUrl);
