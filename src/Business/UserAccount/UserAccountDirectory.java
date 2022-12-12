@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Business.UserAccount;
 
@@ -10,9 +10,10 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Pranav
+ * @author 91983
  */
 public class UserAccountDirectory {
+    
     private ArrayList<UserAccount> userAccountList;
 
     public UserAccountDirectory() {
@@ -31,17 +32,22 @@ public class UserAccountDirectory {
         return null;
     }
     
-    public UserAccount createUserAccount(String username, String password, Employee employee,Role role){
+    public UserAccount createUserAccount(String username, String password, Employee employee, Role role){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
-        // userAccount.setSupplierEmp(supplierEmp);
         userAccount.setRole(role);
         userAccountList.add(userAccount);
         return userAccount;
     }
-    
+     public UserAccount createUserAccount(String username, String password){
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccountList.add(userAccount);
+        return userAccount;
+    }
     public boolean checkIfUsernameIsUnique(String username){
         for (UserAccount ua : userAccountList){
             if (ua.getUsername().equals(username))
@@ -49,28 +55,4 @@ public class UserAccountDirectory {
         }
         return true;
     }
-
-    public UserAccount findEmployee(Employee employee)
-    {
-        for (UserAccount ua : userAccountList)
-            if (ua.getEmployee() == employee){
-                return ua;
-            }
-        return null;
-    }
-    
-    /*public UserAccount findSupplierEmp(SupplierEmp supplierEmp)
-    {
-        for (UserAccount ua : userAccountList)
-            if (ua.getSupplierEmp() == supplierEmp){
-                return ua;
-            }
-        return null;
-    }*/
-    
-    public void deleteUserAccount(UserAccount ua)
-    {
-        userAccountList.remove(ua);
-    }
-  
 }
